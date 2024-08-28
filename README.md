@@ -1,3 +1,4 @@
+
 # Algoritmos e Programação de Computadores I
 
 Repositório criado para as aulas teóricas e atividades práticas da discipina de Algoritmos e Programação de Computadores I.
@@ -47,3 +48,4 @@ gcc nome_do_arquivo.c -lm
 ```shell
 ./a.out
 ```
+
