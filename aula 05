@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main(){
+	int numero;
+	
+	printf("Encontre com um numero: ");
+	int deu_certo = scanf("%i", &numero);
+	
+	int eh_divisivel_por_2 = numero % 2 == 0;
+	
+	if(eh_divisivel_por_2){
+		printf("O numero %i eh par!\n", numero);
+	}else {
+		printf("O numero %i eh impar!impar!\n", numero);
+	}
+	
+	int idade = 0;
+	
+	printf("Entre com a sua idade: ");
+	int deu_certo = scanf("%i", &idade );
+	// comando if alinhado
+	
+	if(idade < 16) {
+		printf("VOCE VAI PODER VOTAR \n");
+	}else{
+		if(idade >= 18 && idade <= 70){
+			printf("Voce e Obrigado por votar \n");	
+		}else{
+			printf("Voce na e obrigado a votar \n");
+		}
+		}
+	// if encadeado
+	
+	if (media >= 9.0f media <= 10.0f){
+		printf("Sua menção sh SS\n ");	
+	}else if ( media >= 5.0)	
+	return 0;
+	
+}
