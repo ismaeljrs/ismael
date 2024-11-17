@@ -1,0 +1,221 @@
+/*
+Desenvolva um programa em linguagem C, optando por um jogo de tabuleiro ou um
+sistema de cadastro de dados, que atenda aos seguintes critérios:
+a) Deve conter apenas a função main(), sem precisar dividir o código em outras
+funções; b) Implementar um menu principal, fazendo uso de comandos de seleção e
+repetição; c) Garantir a validação da entrada de dados, permitindo apenas os
+valores aceitos e evitando possíveis erros durante a execução do programa; d)
+Incorporar a capacidade de armazenar dados em memória, fazendo uso de matrizes e
+estruturas. Submeta seu projeto por meio do Replit para permitir a análise do
+código e a execução do programa.
+*/
+
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+
+  int opcao = -1;
+
+  while (opcao != 0) {
+    int deucerto = system("clear");
+    printf("--- PROJETO APC1 IESB ---\n");
+    printf("Escolha uma alternativa\n");
+    printf("1 - Iniciar Jogo\n");
+    printf("2 - Cadastro de alunos IESB\n");
+    printf("3 - Informações sobre o programa\n");
+    printf("4 - Ajuda\n");
+    printf("5 - Creditos\n");
+    printf("0 - Encerrar o programa\n");
+    printf("Escolha a opcao desejada: ");
+    deucerto = scanf("%i", &opcao);
+    while (getchar() != '\n');
+    printf("\n");
+
+    switch (opcao) {
+
+    case 1: {
+      int i;
+      int j;
+      int linha;
+      int coluna;
+      int contador;
+      char matriz[3][3];
+      int ler_coluna;
+      int ler_linha;
+      for (i = 0; i < 3; i++) {
+        putchar('\n');
+        for (j = 0; j < 3; j++) {
+          putchar('\t');
+          matriz[i][j] = '.';
+          printf("%c", matriz[i][j]);
+        }
+        putchar('\n');
+        putchar('\n');
+      }
+      for (contador = 0; contador < 9; contador++) {
+
+        printf("\nInsira a linha em que devera ser posto seu simbolo :\n");
+        ler_coluna = scanf("%i", &linha);
+        fflush(stdout);
+        linha--;
+
+        printf("Insira a coluna em que devera ser posto seu simbolo:\n");
+        ler_coluna = scanf("%i", &coluna);
+        fflush(stdout);
+        coluna--;
+
+        putchar('\n');
+        if (matriz[linha][coluna] == '.') {
+
+          if (contador % 2) {
+            matriz[linha][coluna] = 'O';
+          } else {
+            matriz[linha][coluna] = 'X';
+          }
+          for (i = 0; i < 3; i++) {
+            putchar('\n');
+            for (j = 0; j < 3; j++) {
+              putchar('\t');
+              printf("%c", matriz[i][j]);
+            }
+            putchar('\n');
+            putchar('\n');
+          }
+          if ((matriz[0][0] == matriz[0][1] && matriz[0][0] == matriz[0][2] &&
+               matriz[0][0] != '.') ||
+              (matriz[0][0] == matriz[1][1] && matriz[0][0] == matriz[2][2] &&
+               matriz[0][0] != '.') ||
+              (matriz[0][0] == matriz[1][0] && matriz[0][0] == matriz[2][0] &&
+               matriz[0][0] != '.') ||
+              (matriz[0][1] == matriz[1][1] && matriz[0][1] == matriz[2][1] &&
+               matriz[0][1] != '.') ||
+              (matriz[0][2] == matriz[1][2] && matriz[0][2] == matriz[2][2] &&
+               matriz[0][2] != '.') ||
+              (matriz[1][0] == matriz[1][1] && matriz[1][0] == matriz[1][2] &&
+               matriz[1][0] != '.') ||
+              (matriz[2][0] == matriz[2][1] && matriz[2][0] == matriz[2][2] &&
+               matriz[2][0] != '.') ||
+              (matriz[2][0] == matriz[1][1] && matriz[2][0] == matriz[0][2] &&
+               matriz[2][0] != '.')) {
+
+            printf("\nJogador %d ganhou!", (contador % 2) + 1);
+            exit(0);
+          }
+        } else {
+          printf("\nO espaço escolhido ja esta ocupado, repita a operaçao para "
+                 "um espaço valido\n");
+          contador--;
+        }
+      }
+
+      printf("\nNinguem ganhou :(");
+
+      break;
+    }
+
+    case 2: {
+deucerto = system("clear");
+      struct alunos_iesb {
+
+        char nome[41];
+        char matricula[11];
+        int idade;
+        char curso[31];
+      };
+
+      struct alunos_iesb alunos[5];
+
+      for (int i = 0; i < 5; i++) {
+        printf("Digite o nome do aluno: ");
+        int deucerto = scanf("%[^\n]s", alunos[i].nome);
+        while (getchar() != '\n');
+        int tamanho = strlen(alunos[i].nome);
+        for (int j = 0; j < tamanho; j++) {
+          alunos[i].nome[j] = toupper(alunos[i].nome[j]);
+        }
+        printf("Digite a idade do aluno: ");
+        deucerto = scanf("%i", &alunos[i].idade);
+        while (getchar() != '\n');
+
+        printf("Digite a matrícula de 10 números: ");
+        deucerto = scanf("%[^\n]s", alunos[i].matricula);
+        while (getchar() != '\n');
+
+        printf("Digite o nome do curso: ");
+        deucerto = scanf("%[^\n]s", alunos[i].curso);
+        while (getchar() != '\n');
+        tamanho = strlen(alunos[i].curso);
+        for (int j = 0; j < tamanho; j++) {
+          alunos[i].curso[j] = toupper(alunos[i].curso[j]);
+       }
+      }
+
+      printf("\n--- LISTA DE ALUNOS ---\n");
+      printf("\n");
+      for (int i = 0; i < 5; i++) {
+      printf("ALUNO: %s\n", alunos[i].nome);
+      printf("IDADE: %i\n", alunos[i].idade);
+      printf("MATRICULA: %s\n", alunos[i].matricula);
+      printf("CURSO: %s\n", alunos[i].curso);
+      printf("\n");
+      }
+      printf("\n");
+      printf("\nPressione ENTER para voltar ao menu: ");
+
+      getchar();
+      break;
+    }
+
+      case 3: {
+        deucerto = system("clear");
+        printf("--- PAGINA DE INFORMACOES ---\n");
+        printf("Esse programa contém:\n");
+        printf("1º - Jogo da velha\n");
+        printf("2º - Sistema de cadastro de dados de alunos do IESB\n");
+        printf("\nPressione ENTER para voltar ao menu: ");
+        getchar();
+        break;
+      }
+
+    case 4: {
+      deucerto = system("clear");
+      printf("--- PAGINA DE AJUDA ---\n");
+      printf("- Para começar deve selecionar uma das opções listadas no menu.\n");
+      printf("- Certifique-se de que está escolhendo a opção certa.\n");
+      printf("\nPressione ENTER para voltar ao menu: ");
+      getchar();
+      break;
+    }
+
+    case 5: {
+      deucerto = system("clear");
+      printf("--- PAGINA DOS CREDITOS ---\n");
+      printf("Este programa foi desenvolvido pelos aluno:\n");
+      printf("Ismael jorge - 2412130137\n");
+      printf("\nPressione ENTER para voltar ao menu: ");
+      getchar();
+      break;
+    }
+
+    case 0: {
+      deucerto = system("clear");
+      printf("Programa encerrado!!\n");
+      printf("Muito obrigado, até a próxima!\n");
+      break;
+    }
+
+    default: {
+      deucerto = system("clear");
+      printf("Seleção inválida\n");
+      printf("Se precisar, dirija-se ao menu de ajuda.\n");
+      printf("\nPressione ENTER para voltar ao menu: ");
+      getchar();
+    }
+    }
+  }
+
+  return 0;
+}
